@@ -2153,6 +2153,11 @@
   "resolved" "https://registry.npmmirror.com/eslint-config-prettier/-/eslint-config-prettier-8.6.0.tgz"
   "version" "8.6.0"
 
+"eslint-define-config@^1.14.0":
+  "integrity" "sha512-NREt5SzMwKmLAY28YdaqIiTSJxfPpuZ+1ZLJxY2Wbj02dYF4QX81z0q9MPMjZB8C+SlCu66qAhcPpFJyhXOiuA=="
+  "resolved" "https://registry.npmmirror.com/eslint-define-config/-/eslint-define-config-1.14.0.tgz"
+  "version" "1.14.0"
+
 "eslint-plugin-prettier@^4.2.1":
   "integrity" "sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ=="
   "resolved" "https://registry.npmmirror.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.2.1.tgz"
