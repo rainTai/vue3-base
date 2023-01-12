@@ -22,9 +22,9 @@ const count = ref(0)
   <p>
     sss Install
     <a href="https://github.com/johnsoncodehk/vossslar" target="_blank">Volar</a>
-    in your IDE{{ 'zbcd' + 'ssss' + 1 }
+    in your
   </p>
-  ssss!! ssss 1234asdfs{ss
+  ssss!! ssss 1234asdfs
   <p class="read-the-docs">Click on the Vite and Vue logos to lear12341n more</p>
 </template>
 
