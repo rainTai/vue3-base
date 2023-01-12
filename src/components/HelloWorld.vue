@@ -24,7 +24,7 @@ const count = ref(0)
   </p>
   <p>
     Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
+    <a href="https://github.com/johnsoncodehk/vossslar" target="_blank">Volar</a>
     in your IDE{{ 'zbcd' + 'ssss' + 1 }
   </p>
   1234asdfs{ss

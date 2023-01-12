@@ -11,7 +11,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  测试webhooks 哈哈哈哈哈 <HelloWorld msg="Vite + Vue" /123412
+  测试webhooks 哈哈哈哈哈 <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>

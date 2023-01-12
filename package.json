@@ -7,7 +7,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "commit": "git-cz",
-    "lint:lint-staged": "lint-staged -c ./.husky/lint-staged.config.js",
+    "lint:lint-staged": "lint-staged",
     "standard-version": "standard-version",
     "lint:ls-lint": "ls-lint"
   },
@@ -50,6 +50,29 @@
     "vite": "^4.0.0",
     "vue-eslint-parser": "^9.1.0",
     "vue-tsc": "^1.0.11"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
+      "prettier --write--parser json"
+    ],
+    "package.json": [
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,less,styl,html}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
   },
   "config": {
     "commitizen": {
