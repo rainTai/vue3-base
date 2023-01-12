@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const jumpTo = () => {
+  router.push('/shan')
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="body">
+    <Header />
+    <el-button @click="jumpTo">跳转</el-button>
+    <RouterView />
   </div>
-  测试webhooks 哈哈哈哈哈-----ajhsdgfkjahsgkjahsgkjhgasdkjhgfkajgkjfshdg
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.body {
+  width: 100vw;
+  height: 100vh;
+  background: #555555;
 }
 </style>
