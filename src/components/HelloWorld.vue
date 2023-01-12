@@ -23,7 +23,7 @@ const count = ref(0)
     official Vue + Vite starter
   </p>
   <p>
-    Install
+    sss Install
     <a href="https://github.com/johnsoncodehk/vossslar" target="_blank">Volar</a>
     in your IDE{{ 'zbcd' + 'ssss' + 1 }
   </p>

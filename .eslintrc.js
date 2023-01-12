@@ -15,8 +15,11 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['@typescript-eslint'],
-  extends: [],
+  extends: [
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
   rules: {
     'vue/script-setup-uses-vars': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
@@ -31,6 +34,13 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
     'no-unused-vars': [
       'error',
       {
@@ -49,6 +59,18 @@ module.exports = {
     'vue/attribute-hyphenation': 'off',
     'vue/require-default-prop': 'off',
     'vue/require-explicit-emits': 'off',
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+          normal: 'never',
+          component: 'always',
+        },
+        svg: 'always',
+        math: 'always',
+      },
+    ],
     'vue/multi-word-component-names': 'off',
     'vue/no-v-html': 'off',
   },
