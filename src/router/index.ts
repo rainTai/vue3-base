@@ -13,6 +13,31 @@ const router = createRouter({
       name: 'Shan',
       component: () => import('../views/shan/index.vue'),
     },
+    {
+      path: '/yi',
+      name: 'Yi',
+      component: () => import('../views/yi/index.vue'),
+    },
+    {
+      path: '/ming',
+      name: 'Ming',
+      component: () => import('../views/ming/index.vue'),
+    },
+    {
+      path: '/xiang',
+      name: 'Xiang',
+      component: () => import('../views/xiang/index.vue'),
+    },
+    {
+      path: '/bu',
+      name: 'Bu',
+      component: () => import('../views/bu/index.vue'),
+    },
+    {
+      path: '/xiu',
+      name: 'Xiu',
+      component: () => import('../views/xiu/index.vue'),
+    },
   ],
 })
 

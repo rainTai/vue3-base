@@ -4377,6 +4377,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"lunar-calendar@^0.1.4":
+  "integrity" "sha512-5r87vbg5yg56z/jkf3A+Ur+ZggUTiJw1VATT9P7RELQgWcTNhfJ+OLkNYroSna6r65bMqyaAgapo9vRN40L75A=="
+  "resolved" "https://registry.npmmirror.com/lunar-calendar/-/lunar-calendar-0.1.4.tgz"
+  "version" "0.1.4"
+
 "magic-string@^0.25.7":
   "integrity" "sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ=="
   "resolved" "https://registry.npmmirror.com/magic-string/-/magic-string-0.25.9.tgz"

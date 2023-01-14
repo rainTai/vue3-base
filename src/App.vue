@@ -1,25 +1,32 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-const jumpTo = () => {
-  router.push('/shan')
-}
 </script>
 
 <template>
   <div class="body">
-    <Header />
-    <el-button @click="jumpTo">跳转</el-button>
-    <RouterView />
+    <div class="header">
+      <Header />
+    </div>
+    <div class="content">
+      <RouterView />
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .body {
   width: 100vw;
   height: 100vh;
-  background: #555555;
+  background: #999;
+  font-family: STKaiti;
+  padding-top: 0px;
+  .header {
+    position: fixed;
+  }
+  .content {
+    padding-top: 60px;
+    height: calc(100vh - 60px);
+    width: 100%;
+  }
 }
 </style>
