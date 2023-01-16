@@ -1,9 +1,30 @@
 <template>
-  <div>山</div>
+  <div class="page">
+    <div class="main">
+      <div class="top">
+        <div class="left">
+          <TimeComp />
+        </div>
+        <div class="right">
+          <SelectComp />
+        </div>
+      </div>
+      <HourComp />
+      <DayListComp />
+    </div>
+    <div class="side">
+      <GongComp />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, toRefs, onBeforeMount, onMounted, watchEffect } from 'vue'
+import TimeComp from '@/components/Time.vue'
+import HourComp from './components/HourList.vue'
+import DayListComp from './components/DayList.vue'
+import SelectComp from './components/Select.vue'
+import GongComp from './components/Gong.vue'
 
 const data = reactive({})
 onBeforeMount(() => {
@@ -19,4 +40,22 @@ defineExpose({
   ...toRefs(data),
 })
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.page {
+  display: flex;
+  .main {
+    flex: 1;
+    .top {
+      display: flex;
+      .left {
+        width: 400px;
+      }
+      .right {
+      }
+    }
+  }
+  .side {
+    width: 350px;
+  }
+}
+</style>

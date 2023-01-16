@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
+import { useDate } from '@/hooks/useDate'
+
+useDate()
 </script>
 
 <template>
