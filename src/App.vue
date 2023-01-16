@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
+import { useDate } from '@/hooks/useDate'
+
+useDate()
 </script>
 
 <template>
@@ -25,7 +28,7 @@ import Header from './components/Header.vue'
   }
   .content {
     padding-top: 60px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 60px);
     width: 100%;
   }
 }

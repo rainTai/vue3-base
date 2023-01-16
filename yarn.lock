@@ -4382,6 +4382,11 @@
   "resolved" "https://registry.npmmirror.com/lunar-calendar/-/lunar-calendar-0.1.4.tgz"
   "version" "0.1.4"
 
+"lunisolar@^1.5.0":
+  "integrity" "sha512-AjIXd8jFFeb7mSCYGMF81BIBk8mYNp9T8phaJOTYhvQnt5E5GBNbOQGD7KgnvIpeRN/FEW9Ej/La1dHgXDR4Qg=="
+  "resolved" "https://registry.npmmirror.com/lunisolar/-/lunisolar-1.5.0.tgz"
+  "version" "1.5.0"
+
 "magic-string@^0.25.7":
   "integrity" "sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ=="
   "resolved" "https://registry.npmmirror.com/magic-string/-/magic-string-0.25.9.tgz"
