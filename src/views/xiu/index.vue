@@ -1,20 +1,19 @@
 <template>
-  <div>山</div>
+  <div class="page">
+    <div class="page-left"><ListComp /></div>
+    <div class="page-right"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, toRefs, onBeforeMount, onMounted, watchEffect } from 'vue'
+import ListComp from '@/components/List/Index.vue'
+// import DataList from './data'
 
 const data = reactive({})
-onBeforeMount(() => {
-  //console.log('2.组件挂载页面之前执行----onBeforeMount')
-})
-onMounted(() => {
-  //console.log('3.-组件挂载到页面之后执行-------onMounted')
-})
+onBeforeMount(() => {})
+onMounted(() => {})
 watchEffect(() => {})
-// 使用toRefs解构
-// let { } = { ...toRefs(data) }
 defineExpose({
   ...toRefs(data),
 })
