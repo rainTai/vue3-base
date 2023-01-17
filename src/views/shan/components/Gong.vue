@@ -1,7 +1,17 @@
 <template>
   <div class="list">
     <div class="item" v-for="(item, index) in getGongFilter(baseStore.gongList)" :key="index">
-      {{ item.name }} - {{ item.inside }}
+      <div>{{ item.name }} - {{ item.inside }}</div>
+      <div>
+        <span v-for="(badKey, badIndex) in Object.keys(item.bad)" :key="badIndex">
+          {{ item.bad[badKey] }}</span
+        >
+      </div>
+      <div>
+        <span v-for="(luItem, luIndex) in item.luMaGui" :key="luIndex">
+          {{ luItem.GanZhi + '命' + luItem.value }}
+        </span>
+      </div>
     </div>
   </div>
 </template>

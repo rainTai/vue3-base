@@ -1,10 +1,10 @@
 <template>
   <div class="list">
     <div
-      class="item"
+      :class="`item ${baseData.activeIndex === index ? 'item-active' : ''}`"
       v-for="(item, index) in baseStore.dayList.filter(filterData)"
       :key="index"
-      @click="setDateLocal(item)"
+      @click.stop="setDateLocal(item, index)"
     >
       <div class="day">
         <span class="ganzhi-day">{{ item.format('cD') }} </span>{{ item.format('DD') }}日
@@ -17,12 +17,18 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onMounted, watchEffect } from 'vue'
+import { onBeforeMount, watchEffect, reactive } from 'vue'
 import { useBaseStore } from '@/store/index'
 import { useDate } from '@/hooks/useDate'
+import { useGong } from '@/hooks/useGong'
 
 const baseStore = useBaseStore()
 const { setData } = useDate()
+const { initGongList } = useGong()
+
+const baseData = reactive({
+  activeIndex: 0,
+})
 
 const filterData = item => {
   const dayGanZhi = item.format('cD')
@@ -35,15 +41,21 @@ const filterData = item => {
   }
 }
 
-const setDateLocal = item => {
+const setDateLocal = (item, index) => {
+  baseData.activeIndex = index
   const date = item.format('DD')
   baseStore.date = date
   setData(baseStore.year, baseStore.month, baseStore.date)
+  initGongList()
+  baseStore.$patch(state => {
+    state.hour = '0'
+  })
 }
 
 onBeforeMount(() => {})
-onMounted(() => {})
-watchEffect(() => {})
+watchEffect(() => {
+  baseData.activeIndex = Number(baseStore.date) - 1
+})
 </script>
 <style scoped lang="scss">
 .list {
@@ -73,5 +85,9 @@ watchEffect(() => {})
 
   .jieqi {
   }
+}
+.item-active {
+  border: 1px solid #555;
+  box-shadow: inset 0px 0px 10px #555;
 }
 </style>

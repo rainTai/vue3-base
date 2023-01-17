@@ -13,11 +13,15 @@ export const useDate = () => {
   })
 
   onMounted(() => {
-    setData(baseStore.year, baseStore.month)
+    setData(baseStore.year, baseStore.month, baseStore.date, baseStore.hour)
+    setTimeout(() => {
+      getHourList()
+    }, 100)
   })
   //初始化数据
   const setData = (year?, month?, date?, hour?) => {
     const { dayList, currentTime } = initDate(year, month, date, hour)
+    console.log(currentTime.format('cY cM cD cH'))
     baseStore.$patch(state => {
       state.dayList = dayList
       state.currentTime = currentTime

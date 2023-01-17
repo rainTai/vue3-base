@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
 import { useDate } from '@/hooks/useDate'
+import { useGong } from '@/hooks/useGong'
 
 useDate()
+useGong()
 </script>
 
 <template>

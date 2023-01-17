@@ -10,6 +10,7 @@
           clearable
           value-format="YYYY-MM"
           size="small"
+          @change="setYearMonth"
         />
       </el-form-item>
       <el-form-item label="过滤干">
@@ -24,12 +25,25 @@
       </el-form-item>
 
       <el-form-item label="命主">
-        <el-select v-model="form.mingList" style="width: 250px" multiple size="small" clearable>
+        <el-select
+          v-model="form.mingList"
+          style="width: 250px"
+          multiple
+          size="small"
+          clearable
+          @change="setZuoShan"
+        >
           <el-option v-for="item in sixtyList" :key="item" :label="item" :value="item" />
         </el-select>
       </el-form-item>
       <el-form-item label="坐山">
-        <el-select v-model="form.zuoshan" style="width: 70px" size="small" clearable>
+        <el-select
+          v-model="form.zuoshan"
+          style="width: 70px"
+          size="small"
+          clearable
+          @change="setZuoShan"
+        >
           <el-option v-for="item in erShiSiShan" :key="item" :label="item" :value="item" />
         </el-select>
       </el-form-item>
@@ -51,10 +65,12 @@
 import { reactive, onBeforeMount, onMounted, watchEffect } from 'vue'
 import { useBaseStore } from '@/store'
 import { useDate, ganList, zhiList, erShiSiShan, typeList, sixtyList } from '@/hooks/useDate'
+import { useGong } from '@/hooks/useGong'
 
 const baseStore = useBaseStore()
 
 const { setData } = useDate()
+const { initGongList } = useGong()
 
 const form = reactive({
   yearMonth: '',
@@ -65,15 +81,27 @@ const form = reactive({
   type: '',
 })
 
-watchEffect(() => {
+const setYearMonth = () => {
   if (form.yearMonth) {
     const [year, month] = form.yearMonth.split('-')
     setData(year, month)
+    initGongList()
     baseStore.$patch(state => {
       state.year = year
       state.month = month
+      state.date = '1'
+      state.hour = '0'
     })
   }
+}
+
+const setZuoShan = () => {
+  setTimeout(() => {
+    initGongList()
+  }, 100)
+}
+
+watchEffect(() => {
   baseStore.$patch(state => {
     state.filterGan = form.filterGan
     state.filterZhi = form.filterZhi
