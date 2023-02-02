@@ -38,14 +38,458 @@ const initGongListFunc = (currentTime, mingList, zuoshan) => {
         sanSha: getSanSha(currentTime, i),
       },
       luMaGui: getLuMaGui(currentTime, i, mingList),
-      // if (selectStruct.jieQi) {
-      //   body.taiYang = this.getTaiYang(dateObject, i, selectStruct.jieQi)
-      //   body.sanQi = this.getSanQi(dateObject, i, selectStruct.jieQi)
+      good: {
+        taiyang: getTaiYang(currentTime, i),
+        // taiyin: getTaiYin(currentTime, i),
+        sanqi: getSanQi(currentTime, i),
+        yuede: getYueDe(currentTime, i),
+        tiande: getTianDe(currentTime, i),
+        yuedehe: getYueDeHe(currentTime, i),
+        tiandehe: getTianDeHe(currentTime, i),
+      },
     }
     gongList.push(body)
-    console.log('---')
   })
   return gongList
+}
+
+//太阳
+const getTaiYang = (currentTime: any, i: number) => {
+  const jieqi = currentTime.jieqi.split(',')[0]
+  const array = [
+    {
+      mountain: '壬',
+      to: '立秋',
+    },
+    {
+      mountain: '子',
+      to: '大暑',
+    },
+    {
+      mountain: '癸',
+      to: '小暑',
+    },
+    {
+      mountain: '丑',
+      to: '夏至',
+    },
+    {
+      mountain: '艮',
+      to: '芒种',
+    },
+    {
+      mountain: '寅',
+      to: '小滿',
+    },
+    {
+      mountain: '甲',
+      to: '立夏',
+    },
+    {
+      mountain: '卯',
+      to: '穀雨',
+    },
+    {
+      mountain: '乙',
+      to: '清明',
+    },
+    {
+      mountain: '辰',
+      to: '春分',
+    },
+    {
+      mountain: '巽',
+      to: '惊蛰',
+    },
+    {
+      mountain: '巳',
+      to: '雨水',
+    },
+    {
+      mountain: '丙',
+      to: '立春',
+    },
+    {
+      mountain: '午',
+      to: '大寒',
+    },
+    {
+      mountain: '丁',
+      to: '小寒',
+    },
+    {
+      mountain: '未',
+      to: '冬至',
+    },
+    {
+      mountain: '坤',
+      to: '大雪',
+    },
+    {
+      mountain: '申',
+      to: '小雪',
+    },
+    {
+      mountain: '庚',
+      to: '立冬',
+    },
+    {
+      mountain: '酉',
+      to: '霜降',
+    },
+    {
+      mountain: '辛',
+      to: '寒露',
+    },
+    {
+      mountain: '戌',
+      to: '秋分',
+    },
+    {
+      mountain: '乾',
+      to: '白露',
+    },
+    {
+      mountain: '亥',
+      to: '處暑',
+    },
+  ]
+  // console.log(jieqi, 'why')
+  const data = array.filter(x => x.to === jieqi)[0].mountain
+  if (gongChildName[i].includes(data)) {
+    return data + '山太阳到向'
+  } else {
+    return ''
+  }
+}
+//太阴
+// const getTaiYin = (currentTime: any, i: number) => {}
+//三奇(以三奇方为用)
+const getSanQi = (currentTime: any, i: number) => {
+  const jieqi = currentTime.jieqi.split(',')[0]
+  const year = currentTime.format('cY')
+  const array = [
+    {
+      jieqi: '立春,雨水,惊蛰',
+      mountain: '',
+    },
+    {
+      jieqi: '春分,清明,谷雨',
+    },
+    {
+      jieqi: '立夏,小满,芒种',
+    },
+    {
+      jieqi: '夏至,小暑,大暑',
+    },
+    {
+      jieqi: '立秋,处暑,白露',
+    },
+    {
+      jieqi: '秋分,寒露,霜降',
+    },
+    {
+      jieqi: '立冬,小雪,大雪',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '甲子,己酉,乙亥,丙戌,丁酉,庚申,戊申',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '甲子,己酉,乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坤',
+      year: '甲子,己酉,乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '乾',
+      year: '辛卯,壬寅,戊辰,癸丑,庚辰',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '兑',
+      year: '辛卯,壬寅,戊辰,癸丑,庚辰',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '艮',
+      year: '辛卯,壬寅,戊辰,癸丑,庚辰',
+      qi: '丁',
+    },
+  ]
+  const data = [] as any
+  array.forEach(x => {
+    // 如果节气属于当前节气,年份属于当前年份
+    if (x.jieqi.includes(jieqi) && x.year?.includes(year)) {
+      const body = {
+        qi: x.qi,
+        mountain: x.mountain,
+      }
+      data.push(body)
+    }
+  })
+  if (data.some(x => gongName[i].includes(x.mountain))) {
+    const qi = data.filter(x => gongName[i].includes(x.mountain))[0].qi
+    return qi + '奇'
+  } else {
+    return ''
+  }
+}
+//天德
+const getTianDe = (currentTime: any, i: number) => {
+  const month = currentTime.format('cM')
+  const monthZhi = month[1]
+  const array = [
+    {
+      mountain: '丁',
+      month: '寅',
+    },
+    {
+      mountain: '坤',
+      month: '卯',
+    },
+    {
+      mountain: '壬',
+      month: '辰',
+    },
+    {
+      mountain: '辛',
+      month: '巳',
+    },
+    {
+      mountain: '乾',
+      month: '午',
+    },
+    {
+      mountain: '甲',
+      month: '未',
+    },
+    {
+      mountain: '癸',
+      month: '申',
+    },
+    {
+      mountain: '艮',
+      month: '酉',
+    },
+    {
+      mountain: '丙',
+      month: '戌',
+    },
+    {
+      mountain: '乙',
+      month: '亥',
+    },
+    {
+      mountain: '巽',
+      month: '子',
+    },
+    {
+      mountain: '庚',
+      month: '丑',
+    },
+  ]
+  const data = array.filter(x => x.month === monthZhi)[0].mountain
+  if (gongChildName[i].includes(data)) {
+    return data + '山天德'
+  } else {
+    return ''
+  }
+}
+
+//天德合
+const getTianDeHe = (currentTime: any, i: number) => {
+  const month = currentTime.format('cM')
+  const monthZhi = month[1]
+  const array = [
+    {
+      mountain: '壬',
+      month: '寅',
+    },
+    {
+      mountain: '巽',
+      month: '卯',
+    },
+    {
+      mountain: '丁',
+      month: '辰',
+    },
+    {
+      mountain: '丙',
+      month: '巳',
+    },
+    {
+      mountain: '艮',
+      month: '午',
+    },
+    {
+      mountain: '己',
+      month: '未',
+    },
+    {
+      mountain: '戊',
+      month: '申',
+    },
+    {
+      mountain: '乾',
+      month: '酉',
+    },
+    {
+      mountain: '辛',
+      month: '戌',
+    },
+    {
+      mountain: '庚',
+      month: '亥',
+    },
+    {
+      mountain: '坤',
+      month: '子',
+    },
+    {
+      mountain: '乙',
+      month: '丑',
+    },
+  ]
+  const data = array.filter(x => x.month === monthZhi)[0].mountain
+  if (gongChildName[i].includes(data)) {
+    return data + '山天德合'
+  } else {
+    return ''
+  }
+}
+//月德
+const getYueDe = (currentTime: any, i: number) => {
+  const month = currentTime.format('cM')
+  const monthZhi = month[1]
+  const array = [
+    {
+      mountain: '丙',
+      month: '寅',
+    },
+    {
+      mountain: '甲',
+      month: '卯',
+    },
+    {
+      mountain: '壬',
+      month: '辰',
+    },
+    {
+      mountain: '庚',
+      month: '巳',
+    },
+    {
+      mountain: '丙',
+      month: '午',
+    },
+    {
+      mountain: '甲',
+      month: '未',
+    },
+    {
+      mountain: '壬',
+      month: '申',
+    },
+    {
+      mountain: '庚',
+      month: '酉',
+    },
+    {
+      mountain: '丙',
+      month: '戌',
+    },
+    {
+      mountain: '甲',
+      month: '亥',
+    },
+    {
+      mountain: '壬',
+      month: '子',
+    },
+    {
+      mountain: '庚',
+      month: '丑',
+    },
+  ]
+  const data = array.filter(x => x.month === monthZhi)[0].mountain
+  if (gongChildName[i].includes(data)) {
+    return data + '山月德'
+  } else {
+    return ''
+  }
+}
+//月德合
+const getYueDeHe = (currentTime: any, i: number) => {
+  const month = currentTime.format('cM')
+  const monthZhi = month[1]
+  const array = [
+    {
+      mountain: '辛',
+      month: '寅',
+    },
+    {
+      mountain: '己',
+      month: '卯',
+    },
+    {
+      mountain: '丁',
+      month: '辰',
+    },
+    {
+      mountain: '乙',
+      month: '巳',
+    },
+    {
+      mountain: '辛',
+      month: '午',
+    },
+    {
+      mountain: '己',
+      month: '未',
+    },
+    {
+      mountain: '丁',
+      month: '申',
+    },
+    {
+      mountain: '乙',
+      month: '酉',
+    },
+    {
+      mountain: '辛',
+      month: '戌',
+    },
+    {
+      mountain: '己',
+      month: '亥',
+    },
+    {
+      mountain: '丁',
+      month: '子',
+    },
+    {
+      mountain: '乙',
+      month: '丑',
+    },
+  ]
+  const data = array.filter(x => x.month === monthZhi)[0].mountain
+  if (gongChildName[i].includes(data)) {
+    return data + '山月德合'
+  } else {
+    return ''
+  }
 }
 
 const getTaiSui = (currentTime: any, i: number) => {

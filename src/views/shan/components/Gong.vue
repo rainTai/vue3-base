@@ -12,6 +12,11 @@
           {{ luItem.GanZhi + '命' + luItem.value }}
         </span>
       </div>
+      <div>
+        <span v-for="(goodKey, goodIndex) in Object.keys(item.good)" :key="goodIndex">
+          {{ item.good[goodKey] }}</span
+        >
+      </div>
     </div>
   </div>
 </template>

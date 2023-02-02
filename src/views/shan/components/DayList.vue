@@ -12,6 +12,21 @@
       <div class="lunar-day">
         {{ item.format('lM(lL)lD') }} <span class="jieqi">({{ item.jieqi.split(',')[0] }})</span>
       </div>
+      <div class="">{{ item.zhiRi }}</div>
+      <div class="">{{ item.xingXiu }}</div>
+      <span :class="`${item.wuTuTaiYang ? 'good' : ''}`">{{
+        item.wuTuTaiYang ? '乌兔太阳' : ''
+      }}</span>
+      <div class="flex-wrap">
+        <div v-for="(goodItem, goodIndex) in item.goodList" :key="goodIndex" class="good">
+          {{ goodItem.label }}
+        </div>
+      </div>
+      <div class="flex-wrap">
+        <div v-for="(badItem, badIndex) in item.badList" :key="badIndex" class="bad">
+          {{ badItem.label }}
+        </div>
+      </div>
     </div>
   </div>
 </template>

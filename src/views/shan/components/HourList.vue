@@ -7,6 +7,14 @@
       @click.stop="setHourLocal(item, index)"
     >
       <div><span class="ganzhi-hour"></span> {{ item.format('cH') }} {{ item.format('HH') }}时</div>
+      <div
+        :class="`${baseStore.currentTime.wuTuTaiYangShi === item.format('cH')[1] ? 'good' : ''}`"
+      >
+        {{ baseStore.currentTime.wuTuTaiYangShi === item.format('cH')[1] ? '乌兔时' : '' }}
+      </div>
+      <div :class="`${baseStore.currentTime.wuBuYuShi === item.format('cH')[1] ? 'bad' : ''}`">
+        {{ baseStore.currentTime.wuBuYuShi === item.format('cH')[1] ? '五不遇时' : '' }}
+      </div>
     </div>
   </div>
 </template>

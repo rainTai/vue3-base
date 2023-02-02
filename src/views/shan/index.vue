@@ -48,9 +48,10 @@ defineExpose({
     .top {
       display: flex;
       .left {
-        width: 400px;
+        width: 260px;
       }
       .right {
+        flex: 1;
       }
     }
   }

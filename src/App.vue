@@ -32,6 +32,7 @@ useGong()
     padding-top: 60px;
     height: calc(100vh - 60px);
     width: 100%;
+    overflow: auto;
   }
 }
 </style>
