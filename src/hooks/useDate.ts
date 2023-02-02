@@ -126,12 +126,26 @@ const getDayFormat = solar => {
     '亥',
     '子',
   ]
+  solar.jieLuKongWang = []
+  solar.guiRenDengTianMen = []
+  solar.luoWenJiaoGui = []
+  solar.wuBuYuShi = []
+  solar.wuTuTaiYangShi = []
   hourList.forEach((hourZhi, index) => {
     if (isWuTuTaiYangShi(hourZhi)) {
-      solar.wuTuTaiYangShi = hourZhi
+      solar.wuTuTaiYangShi.push(hourZhi)
     }
     if (isWuBuYuShi(solar, index)) {
-      solar.wuBuYuShi = hourZhi
+      solar.wuBuYuShi.push(hourZhi)
+    }
+    if (isLuoWenJiaoGui(solar, index)) {
+      solar.luoWenJiaoGui.push(hourZhi)
+    }
+    if (isGuiRenDengTianMen(solar, hourZhi)) {
+      solar.guiRenDengTianMen.push(hourZhi)
+    }
+    if (isJieLuKongWang(solar, hourZhi)) {
+      solar.jieLuKongWang.push(hourZhi)
     }
   })
   return solar
@@ -1928,6 +1942,129 @@ const isWuBuYuShi = (solar, hourIndex) => {
     },
   ]
   if (TianGan.some(x => x.dateGan === dateGan && x.hourGanZhi === hourGanZhi)) {
+    return true
+  } else {
+    return false
+  }
+}
+
+//罗纹交贵
+const isLuoWenJiaoGui = (solar, hourIndex) => {
+  const day = solar.format('cD')
+  const dayGan = day[0]
+  const dayZhi = day[1]
+  const timeStr = solar.format('YYYY/MM/DD') // 2023-02-02 00:00:00
+
+  const tempSolar = lunisolar(`${timeStr} ${hourIndex}`)
+  const hour = tempSolar.format('cH')
+  const hourGan = hour[0]
+  const hourZhi = hour[1]
+  let riToShi = false
+  let shiToRi = false
+  if (
+    (['丑', '未'].includes(hourZhi) && ['甲', '戊', '庚'].includes(dayGan)) ||
+    (['申', '子'].includes(hourZhi) && ['乙', '己'].includes(dayGan)) ||
+    (['亥', '酉'].includes(hourZhi) && ['丙', '丁'].includes(dayGan)) ||
+    (['卯', '巳'].includes(hourZhi) && ['壬', '癸'].includes(dayGan)) ||
+    (['午', '寅'].includes(hourZhi) && ['辛'].includes(dayGan))
+  ) {
+    riToShi = true
+  }
+  if (
+    (['丑', '未'].includes(dayZhi) && ['甲', '戊', '庚'].includes(hourGan)) ||
+    (['申', '子'].includes(dayZhi) && ['乙', '己'].includes(hourGan)) ||
+    (['亥', '酉'].includes(dayZhi) && ['丙', '丁'].includes(hourGan)) ||
+    (['卯', '巳'].includes(dayZhi) && ['壬', '癸'].includes(hourGan)) ||
+    (['午', '寅'].includes(dayZhi) && ['辛'].includes(hourGan))
+  ) {
+    shiToRi = true
+  }
+  if (riToShi && shiToRi) {
+    return true
+  } else {
+    return false
+  }
+}
+
+// 贵人登天门
+const isGuiRenDengTianMen = (solar, hourZhi) => {
+  const jieqi = solar.jieqi.split(',')[0]
+  const day = solar.format('cD')
+  const dayGan = day[0]
+  const jieQiList = [
+    {
+      jieqi: '雨水,惊蛰',
+      dayZhi: ['卯，酉', '戌', '亥', '丑', '卯，酉', '寅', '卯，酉', '申', '未', '巳'],
+    },
+    {
+      jieqi: '春分,清明',
+      dayZhi: ['', '酉', '戌', '子', '寅，申', '丑，酉', '寅，申', '卯，未', '午', '辰'],
+    },
+    {
+      jieqi: '谷雨,立夏',
+      dayZhi: ['', '', '', '酉，亥', '丑，未', '子，申', '丑，未', '寅，午', '巳', '卯'],
+    },
+    {
+      jieqi: '小满,芒种',
+      dayZhi: ['', '', '戌', '申，戌', '子，午', '未，亥', '子，午', '丑，巳', '寅，辰', '寅'],
+    },
+    {
+      jieqi: '夏至，小暑',
+      dayZhi: ['', '戌', '酉', '未', '巳，亥', '午，戌', '巳，亥', '子，辰', '卯，丑', ''],
+    },
+    {
+      jieqi: '大暑，立秋',
+      dayZhi: ['', '酉', '申', '午', '辰，戌', '巳', '辰，戌', '卯，亥', '子，寅', '寅'],
+    },
+    {
+      jieqi: '处暑，白露',
+      dayZhi: ['酉', '申', '未', '巳', '酉，卯', '辰', '卯,酉', '戌', '亥', '丑'],
+    },
+    {
+      jieqi: '秋分，寒露',
+      dayZhi: ['寅，申', '卯，未', '未', '辰', '', '卯', '', '酉', '戌', '子'],
+    },
+    {
+      jieqi: '霜降，立冬',
+      dayZhi: ['丑，未', '寅，午', '卯，巳', '卯', '', '', '', '', '酉', '酉，亥'],
+    },
+    {
+      jieqi: '小雪，大雪',
+      dayZhi: ['午，子', '丑，巳', '辰，寅', '', '', '', '', '', '', '申，戌'],
+    },
+    {
+      jieqi: '冬至，小寒',
+      dayZhi: ['巳，亥', '子，辰', '丑', '卯', '', '辰', '', '', '', '未，酉'],
+    },
+    {
+      jieqi: '大寒，立春',
+      dayZhi: ['辰，戌', '卯，亥', '子', '寅', '', '卯', '', '', '申', '午，申'],
+    },
+  ]
+  let flag = false
+  jieQiList.forEach(x => {
+    if (x.jieqi.includes(jieqi)) {
+      const index = ganList.findIndex(x => x === dayGan)
+      if (x.dayZhi[index].includes(hourZhi)) {
+        flag = true
+      }
+    }
+  })
+  return flag
+}
+
+// 截路空亡
+const isJieLuKongWang = (solar, hourZhi) => {
+  // 如果是甲或己日，时支见申或酉为截路空亡；乙日或庚日，时支见午未；丙辛日时支见辰巳，丁壬日时支见寅卯，戊癸日地支见子丑。
+  const day = solar.format('cD')
+  const dayGan = day[0]
+  if (
+    (['甲', '己'].includes(dayGan) && ['申', '酉'].includes(hourZhi)) ||
+    (['乙', '庚'].includes(dayGan) && ['午', '未'].includes(hourZhi)) ||
+    (['丙', '辛'].includes(dayGan) && ['辰', '巳'].includes(hourZhi)) ||
+    (['丁', '壬'].includes(dayGan) && ['寅', '卯'].includes(hourZhi)) ||
+    (['戊', '癸'].includes(dayGan) && ['子', '丑'].includes(hourZhi))
+  ) {
     return true
   } else {
     return false

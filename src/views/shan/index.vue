@@ -14,6 +14,7 @@
     </div>
     <div class="side">
       <GongComp />
+      <MingListComp />
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ import HourComp from './components/HourList.vue'
 import DayListComp from './components/DayList.vue'
 import SelectComp from './components/Select.vue'
 import GongComp from './components/Gong.vue'
+import MingListComp from './components/MingList.vue'
 
 const data = reactive({})
 onBeforeMount(() => {

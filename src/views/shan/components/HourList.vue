@@ -7,13 +7,20 @@
       @click.stop="setHourLocal(item, index)"
     >
       <div><span class="ganzhi-hour"></span> {{ item.format('cH') }} {{ item.format('HH') }}时</div>
-      <div
-        :class="`${baseStore.currentTime.wuTuTaiYangShi === item.format('cH')[1] ? 'good' : ''}`"
-      >
-        {{ baseStore.currentTime.wuTuTaiYangShi === item.format('cH')[1] ? '乌兔时' : '' }}
+      <div :class="`${validData('wuTuTaiYangShi', item) ? 'good' : ''}`">
+        {{ validData('wuTuTaiYangShi', item) ? '乌兔时' : '' }}
       </div>
-      <div :class="`${baseStore.currentTime.wuBuYuShi === item.format('cH')[1] ? 'bad' : ''}`">
-        {{ baseStore.currentTime.wuBuYuShi === item.format('cH')[1] ? '五不遇时' : '' }}
+      <div :class="`${validData('wuBuYuShi', item) ? 'bad' : ''}`">
+        {{ validData('wuBuYuShi', item) ? '五不遇时' : '' }}
+      </div>
+      <div :class="`${validData('luoWenJiaoGui', item) ? 'good' : ''}`">
+        {{ validData('luoWenJiaoGui', item) ? '罗纹交贵' : '' }}
+      </div>
+      <div :class="`${validData('guiRenDengTianMen', item) ? 'good' : ''}`">
+        {{ validData('guiRenDengTianMen', item) ? '贵人登天门' : '' }}
+      </div>
+      <div :class="`${validData('jieLuKongWang', item) ? 'bad' : ''}`">
+        {{ validData('jieLuKongWang', item) ? '截路空亡' : '' }}
       </div>
     </div>
   </div>
@@ -23,18 +30,25 @@
 import { onBeforeMount, watchEffect, reactive } from 'vue'
 import { useBaseStore } from '@/store'
 import { useDate } from '@/hooks/useDate'
+import { useMing } from '@/hooks/useMing'
 
 const baseStore = useBaseStore()
+const { initMingList } = useMing()
 const { setData } = useDate()
 
 const baseData = reactive({
   activeIndex: 0,
 })
 
+const validData = (property, item) => {
+  return baseStore.currentTime[property].includes(item.format('cH')[1])
+}
+
 const setHourLocal = (item, index) => {
   baseData.activeIndex = index
   const hour = item.format('HH')
   baseStore.hour = hour
+  initMingList()
   setData(baseStore.year, baseStore.month, baseStore.date, baseStore.hour)
 }
 

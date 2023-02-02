@@ -36,10 +36,12 @@ import { onBeforeMount, watchEffect, reactive } from 'vue'
 import { useBaseStore } from '@/store/index'
 import { useDate } from '@/hooks/useDate'
 import { useGong } from '@/hooks/useGong'
+import { useMing } from '@/hooks/useMing'
 
 const baseStore = useBaseStore()
 const { setData } = useDate()
 const { initGongList } = useGong()
+const { initMingList } = useMing()
 
 const baseData = reactive({
   activeIndex: 0,
@@ -62,6 +64,7 @@ const setDateLocal = (item, index) => {
   baseStore.date = date
   setData(baseStore.year, baseStore.month, baseStore.date)
   initGongList()
+  initMingList()
   baseStore.$patch(state => {
     state.hour = '0'
   })

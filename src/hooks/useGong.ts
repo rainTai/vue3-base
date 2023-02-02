@@ -99,7 +99,7 @@ const getTaiYang = (currentTime: any, i: number) => {
     },
     {
       mountain: '巽',
-      to: '惊蛰',
+      to: '驚蟄',
     },
     {
       mountain: '巳',

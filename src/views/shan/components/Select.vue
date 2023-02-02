@@ -31,7 +31,7 @@
           multiple
           size="small"
           clearable
-          @change="setZuoShan"
+          @change="setMingList"
         >
           <el-option v-for="item in sixtyList" :key="item" :label="item" :value="item" />
         </el-select>
@@ -66,11 +66,13 @@ import { reactive, onBeforeMount, onMounted, watchEffect } from 'vue'
 import { useBaseStore } from '@/store'
 import { useDate, ganList, zhiList, erShiSiShan, typeList, sixtyList } from '@/hooks/useDate'
 import { useGong } from '@/hooks/useGong'
+import { useMing } from '@/hooks/useMing'
 
 const baseStore = useBaseStore()
 
 const { setData } = useDate()
 const { initGongList } = useGong()
+const { initMingList } = useMing()
 
 const form = reactive({
   yearMonth: '',
@@ -98,6 +100,11 @@ const setYearMonth = () => {
 const setZuoShan = () => {
   setTimeout(() => {
     initGongList()
+  }, 100)
+}
+const setMingList = () => {
+  setTimeout(() => {
+    initMingList()
   }, 100)
 }
 

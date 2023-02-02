@@ -12,6 +12,7 @@ export const useBaseStore = defineStore({
     dayList: [] as any,
     hourList: [] as any,
     gongList: [] as any[], // 九宫
+    mingInfoList: [] as any[],
     currentTime: {} as any,
     filterGan: [] as string[],
     filterZhi: [] as string[],
