@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div v-for="(item, index) in baseStore.mingInfoList" :key="index">
+  <div class="wrap">
+    <div v-for="(item, index) in baseStore.mingInfoList" :key="index" class="ming">
       <div>{{ item.ming }}</div>
-      <div v-for="(infoItem, infoIndex) in item.mingInfo" :key="infoIndex">
+      <div v-for="(infoItem, infoIndex) in item.mingInfo" :key="infoIndex" class="item">
         <div v-show="infoItem.value">
-          <div>{{ infoItem.label }}-{{ infoItem.value }}</div>
-          <div>{{ infoItem.info }}</div>
+          <div class="label">{{ infoItem.label }}-{{ infoItem.value }}</div>
+          <div class="info">{{ infoItem.info }}</div>
         </div>
       </div>
     </div>
@@ -18,4 +18,14 @@ import { useBaseStore } from '@/store/index'
 
 const baseStore = useBaseStore()
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.item {
+  margin: 10px;
+  .label {
+  }
+  .info {
+    font-family: 微软雅黑;
+    font-size: 12px;
+  }
+}
+</style>

@@ -126,11 +126,25 @@ const getDayFormat = solar => {
     '亥',
     '子',
   ]
+  const baseStore = useBaseStore()
+  if (baseStore.zuoshan) {
+    //根据坐山排除对应的凶日
+    // solar.chongShanRi = isChongShanRi(solar, baseStore.zuoshan)
+    solar.sanShaRi = isSanShaRi(solar, baseStore.zuoshan)
+    // solar.jiangJunJianRi = isJiangJunJianRi()
+    // solar.baShaRi = isBaShaRi()
+    // solar.baShaGuiGongRi = isBaShaGuiGongRi()
+    // solar.longShangBaShaRi = isLongShangBaShaRi()
+    // solar.xingYaoShaRi = isXingYaoShaRi()
+  }
+
   solar.jieLuKongWang = []
   solar.guiRenDengTianMen = []
   solar.luoWenJiaoGui = []
   solar.wuBuYuShi = []
   solar.wuTuTaiYangShi = []
+  solar.sanShaShi = []
+  solar.chongShanShi = []
   hourList.forEach((hourZhi, index) => {
     if (isWuTuTaiYangShi(hourZhi)) {
       solar.wuTuTaiYangShi.push(hourZhi)
@@ -146,6 +160,14 @@ const getDayFormat = solar => {
     }
     if (isJieLuKongWang(solar, hourZhi)) {
       solar.jieLuKongWang.push(hourZhi)
+    }
+    if (baseStore.zuoshan) {
+      if (isSanShaShi(solar, index, baseStore.zuoshan)) {
+        solar.sanShaShi.push(hourZhi)
+      }
+      // if (isChongShanShi(solar, index, baseStore.zuoshan)) {
+      //   solar.chongShanShi.push(hourZhi)
+      // }
     }
   })
   return solar
@@ -1993,7 +2015,7 @@ const isGuiRenDengTianMen = (solar, hourZhi) => {
   const dayGan = day[0]
   const jieQiList = [
     {
-      jieqi: '雨水,惊蛰',
+      jieqi: '雨水,驚蟄',
       dayZhi: ['卯，酉', '戌', '亥', '丑', '卯，酉', '寅', '卯，酉', '申', '未', '巳'],
     },
     {
@@ -2001,7 +2023,7 @@ const isGuiRenDengTianMen = (solar, hourZhi) => {
       dayZhi: ['', '酉', '戌', '子', '寅，申', '丑，酉', '寅，申', '卯，未', '午', '辰'],
     },
     {
-      jieqi: '谷雨,立夏',
+      jieqi: '穀雨,立夏',
       dayZhi: ['', '', '', '酉，亥', '丑，未', '子，申', '丑，未', '寅，午', '巳', '卯'],
     },
     {
@@ -2017,7 +2039,7 @@ const isGuiRenDengTianMen = (solar, hourZhi) => {
       dayZhi: ['', '酉', '申', '午', '辰，戌', '巳', '辰，戌', '卯，亥', '子，寅', '寅'],
     },
     {
-      jieqi: '处暑，白露',
+      jieqi: '處暑，白露',
       dayZhi: ['酉', '申', '未', '巳', '酉，卯', '辰', '卯,酉', '戌', '亥', '丑'],
     },
     {
@@ -3414,5 +3436,37 @@ const isHuangWu = solar => {
     return true
   } else {
     return false
+  }
+}
+
+// 山家三煞日
+const isSanShaRi = (currentTime: any, zuoshan: string) => {
+  const day = currentTime.format('cD')
+  const dayZhi = day[1]
+  if (
+    (['申', '子', '辰'].includes(dayZhi) && ['巳', '丙', '午', '丁', '未'].includes(zuoshan)) ||
+    (['寅', '午', '戌'].includes(dayZhi) && ['亥', '壬', '子', '癸', '丑'].includes(zuoshan)) ||
+    (['巳', '酉', '丑'].includes(dayZhi) && ['寅', '甲', '卯', '乙', '辰'].includes(zuoshan)) ||
+    (['亥', '卯', '未'].includes(dayZhi) && ['辛', '庚', '酉', '辛', '戌'].includes(zuoshan))
+  ) {
+    return true
+  }
+}
+
+// 山家三煞时
+const isSanShaShi = (currentTime: any, hourIndex, zuoshan: string) => {
+  // const day = currentTime.format('cD')
+  const timeStr = currentTime.format('YYYY/MM/DD') // 2023-02-02 00:00:00
+  const tempSolar = lunisolar(`${timeStr} ${hourIndex}`)
+  const hour = tempSolar.format('cH')
+  const hourZhi = hour[1]
+
+  if (
+    (['申', '子', '辰'].includes(hourZhi) && ['巳', '丙', '午', '丁', '未'].includes(zuoshan)) ||
+    (['寅', '午', '戌'].includes(hourZhi) && ['亥', '壬', '子', '癸', '丑'].includes(zuoshan)) ||
+    (['巳', '酉', '丑'].includes(hourZhi) && ['寅', '甲', '卯', '乙', '辰'].includes(zuoshan)) ||
+    (['亥', '卯', '未'].includes(hourZhi) && ['辛', '庚', '酉', '辛', '戌'].includes(zuoshan))
+  ) {
+    return true
   }
 }

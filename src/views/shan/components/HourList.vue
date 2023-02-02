@@ -22,6 +22,9 @@
       <div :class="`${validData('jieLuKongWang', item) ? 'bad' : ''}`">
         {{ validData('jieLuKongWang', item) ? '截路空亡' : '' }}
       </div>
+      <div :class="`${validData('sanShaShi', item) ? 'bad' : ''}`">
+        {{ validData('sanShaShi', item) ? '坐山三煞时' : '' }}
+      </div>
     </div>
   </div>
 </template>

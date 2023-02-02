@@ -17,6 +17,7 @@
       <span :class="`${item.wuTuTaiYang ? 'good' : ''}`">{{
         item.wuTuTaiYang ? '乌兔太阳' : ''
       }}</span>
+      <span :class="`${item.sanShaRi ? 'bad' : ''}`">{{ item.sanShaRi ? '坐山三煞日' : '' }}</span>
       <div class="flex-wrap">
         <div v-for="(goodItem, goodIndex) in item.goodList" :key="goodIndex" class="good">
           {{ goodItem.label }}

@@ -94,12 +94,16 @@ const setYearMonth = () => {
       state.date = '1'
       state.hour = '0'
     })
+  } else {
+    const { year, month } = baseStore
+    setData(year, month)
   }
 }
 
 const setZuoShan = () => {
   setTimeout(() => {
     initGongList()
+    setYearMonth()
   }, 100)
 }
 const setMingList = () => {

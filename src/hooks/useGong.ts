@@ -777,8 +777,7 @@ const getZuoShanYaoSha = (currentTime: any, i: number, zuoshan: string) => {
     ['己亥'],
   ]
   if (array[i].includes(date) && zuoshan && gongChildName[i].includes(zuoshan)) {
-    // console.log(gongChildName[i], zuoshan, 'LLLL')
-    return '日犯坐山耀煞'
+    return gongName[i] + '宫犯坐山耀煞'
   } else {
     return ''
   }
