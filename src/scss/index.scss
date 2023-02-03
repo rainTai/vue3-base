@@ -18,3 +18,20 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+::-webkit-scrollbar {
+  background-color: rgba(158, 158, 158, 0.1);
+  border-radius: 10px;
+  width: 3px; //y轴滚动条宽度
+  height: 3px; //x轴滚动条高度
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px; //滚动条的圆角
+  background: #555555;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px; //滚动条的背景区域的圆角
+  background: rgba(37, 38, 42, 0.2); //滚动条的背景颜色 ; //滚动条的背景颜色
+}

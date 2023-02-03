@@ -10,11 +10,15 @@
         </div>
       </div>
       <HourComp />
-      <DayListComp />
+      <div class="day-list">
+        <DayListComp />
+      </div>
     </div>
     <div class="side">
       <GongComp />
-      <MingListComp />
+      <div class="ming-list">
+        <MingListComp />
+      </div>
     </div>
   </div>
 </template>
@@ -56,9 +60,17 @@ defineExpose({
         flex: 1;
       }
     }
+    .day-list {
+      height: 52vh;
+      overflow: auto;
+    }
   }
   .side {
     width: 350px;
+    .ming-list {
+      overflow: auto;
+      height: 54vh;
+    }
   }
 }
 </style>
