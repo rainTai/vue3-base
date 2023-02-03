@@ -170,6 +170,132 @@ const getSanQi = (currentTime: any, i: number) => {
   const year = currentTime.format('cY')
   const array = [
     {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '甲子,己酉,乙亥,丙戌,丁酉,庚申,戊申',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '甲子,己酉,乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坤',
+      year: '甲子,己酉,乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '离',
+      year: '乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坤',
+      year: '乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '离',
+      year: '己亥',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '离',
+      year: '己亥',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '己亥',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '艮',
+      year: '丙寅，丁丑，戊子，庚子，辛亥，壬戌',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '离',
+      year: '丙寅，丁丑，戊子，庚子，辛亥，壬戌',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '坎',
+      year: '丙寅，丁丑，戊子，庚子，辛亥，壬戌',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '艮',
+      year: '己丑',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '艮',
+      year: '己丑',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '离',
+      year: '己丑',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '兑',
+      year: '丁卯，戊寅，庚寅，辛丑，壬子，癸亥',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '艮',
+      year: '丁卯，戊寅，庚寅，辛丑，壬子，癸亥',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '离',
+      year: '丁卯，戊寅，庚寅，辛丑，壬子，癸亥',
+      qi: '丁',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '兑',
+      year: '己卯',
+      qi: '乙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '兑',
+      year: '己卯',
+      qi: '丙',
+    },
+    {
+      jieqi: '冬至,小寒,大寒',
+      mountain: '艮',
+      year: '己卯',
+      qi: '丁',
+    },
+    {
       jieqi: '立春,雨水,惊蛰',
       mountain: '',
     },
@@ -190,24 +316,6 @@ const getSanQi = (currentTime: any, i: number) => {
     },
     {
       jieqi: '立冬,小雪,大雪',
-    },
-    {
-      jieqi: '冬至,小寒,大寒',
-      mountain: '坎',
-      year: '甲子,己酉,乙亥,丙戌,丁酉,庚申,戊申',
-      qi: '乙',
-    },
-    {
-      jieqi: '冬至,小寒,大寒',
-      mountain: '坎',
-      year: '甲子,己酉,乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
-      qi: '丙',
-    },
-    {
-      jieqi: '冬至,小寒,大寒',
-      mountain: '坤',
-      year: '甲子,己酉,乙丑,丙子,丁亥,戊戌,庚戌,辛酉',
-      qi: '丁',
     },
     {
       jieqi: '冬至,小寒,大寒',

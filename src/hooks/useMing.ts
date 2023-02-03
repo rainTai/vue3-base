@@ -1,5 +1,5 @@
 import { useBaseStore } from '@/store/index'
-// import { ganList, zhiList } from './useDate'
+import { ganList, zhiList } from './useDate'
 
 export const useMing = () => {
   const baseStore = useBaseStore()
@@ -26,11 +26,11 @@ export const useMing = () => {
 }
 
 const mingShenSha = (currentTime, ming) => [
-  // {
-  //   label: '本命相冲',
-  //   value: isBenMingXiangChong(currentTime, ming),
-  //   info: '大凶',
-  // },
+  {
+    label: '本命相冲',
+    value: isBenMingXiangChong(currentTime, ming),
+    info: '大凶',
+  },
   // {
   //   label: '本命三煞',
   //   value: isSanShaByUser(currentTime, ming),
@@ -796,43 +796,43 @@ const isBenMingBad = (currentTime, ming) => {
 // }
 
 //本命相冲
-// const isBenMingXiangChong = (currentTime, ming) => {
-//   const day = currentTime.format('cD')
-//   const dayGan = day[0]
-//   const dayZhi = day[1]
-//   const hour = currentTime.format('cH')
-//   const hourGan = hour[0]
-//   const hourZhi = hour[1]
-//   const mingGan = ming[0]
-//   const mingZhi = ming[1]
-//   let dayData = ''
-//   let hourData = ''
-//   const zhiIndex = zhiList.findIndex(zhi => zhi === dayZhi)
-//   const ganIndex = ganList.findIndex(gan => gan === dayGan)
-//   const tempZhi = zhiList.concat(zhiList)
-//   const tempGan = ganList.concat(ganList)
-//   if (tempZhi[zhiIndex + 6] === mingZhi) {
-//     dayData = '日冲命主'
-//     if (tempGan[ganIndex] === mingGan) {
-//       dayData = '日真冲命主'
-//     }
-//     if (tempGan[ganIndex + 4] === mingGan) {
-//       dayData = '日正冲命主'
-//     }
-//   }
-//   const zhiHourIndex = zhiList.findIndex(zhi => zhi === hourZhi)
-//   const ganHourIndex = ganList.findIndex(gan => gan === hourGan)
-//   if (tempZhi[zhiHourIndex + 6] === mingZhi) {
-//     hourData = '时冲命主'
-//     if (tempGan[ganHourIndex] === mingGan) {
-//       hourData = '时真冲命主'
-//     }
-//     if (tempGan[ganHourIndex + 4] === mingGan) {
-//       hourData = '时正冲命主'
-//     }
-//   }
-//   return dayData + hourData
-// }
+const isBenMingXiangChong = (currentTime, ming) => {
+  const day = currentTime.format('cD')
+  const dayGan = day[0]
+  const dayZhi = day[1]
+  const hour = currentTime.format('cH')
+  const hourGan = hour[0]
+  const hourZhi = hour[1]
+  const mingGan = ming[0]
+  const mingZhi = ming[1]
+  let dayData = ''
+  let hourData = ''
+  const zhiIndex = zhiList.findIndex(zhi => zhi === dayZhi)
+  const ganIndex = ganList.findIndex(gan => gan === dayGan)
+  const tempZhi = zhiList.concat(zhiList)
+  const tempGan = ganList.concat(ganList)
+  if (tempZhi[zhiIndex + 6] === mingZhi) {
+    dayData = '日冲命主'
+    if (tempGan[ganIndex] === mingGan) {
+      dayData = '日真冲命主'
+    }
+    if (tempGan[ganIndex + 4] === mingGan) {
+      dayData = '日正冲命主'
+    }
+  }
+  const zhiHourIndex = zhiList.findIndex(zhi => zhi === hourZhi)
+  const ganHourIndex = ganList.findIndex(gan => gan === hourGan)
+  if (tempZhi[zhiHourIndex + 6] === mingZhi) {
+    hourData = '时冲命主'
+    if (tempGan[ganHourIndex] === mingGan) {
+      hourData = '时真冲命主'
+    }
+    if (tempGan[ganHourIndex + 4] === mingGan) {
+      hourData = '时正冲命主'
+    }
+  }
+  return dayData + hourData
+}
 //本命三刑
 const isBenMingSanXin = (currentTime, ming) => {
   const day = currentTime.format('cD')

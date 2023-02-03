@@ -1,5 +1,5 @@
 <template>
-  <div>山</div>
+  <div>命</div>
 </template>
 
 <script setup lang="ts">
