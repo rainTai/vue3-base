@@ -11,10 +11,23 @@
       </div>
     </div>
     <div class="page-right">
-      <div v-for="(item, index) in baseData.articles[baseData.activeIndex].content" :key="index">
-        {{ item.title }}
+      <div class="child-flex">
+        <div
+          v-for="(item, index) in baseData.articles[baseData.activeIndex].content"
+          :key="index"
+          :class="`${index === baseData.activeChildIndex ? 'child-active' : ''} child`"
+          @click="handleChildClick(item, index)"
+        >
+          {{ item.title }}
+        </div>
       </div>
-      <div></div>
+
+      <div class="article-content">
+        <v-md-preview
+          style="margin: 20px"
+          :text="baseData.articles[baseData.activeIndex].content[baseData.activeChildIndex].content"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -30,7 +43,12 @@ const baseData = reactive({
 })
 
 const handleClick = (_item, index) => {
+  baseData.activeChildIndex = 0
   baseData.activeIndex = index
+}
+
+const handleChildClick = (_item, index) => {
+  baseData.activeChildIndex = index
 }
 onBeforeMount(() => {})
 onMounted(() => {})
@@ -59,9 +77,36 @@ watchEffect(() => {})
   }
   .page-right {
     flex: 1;
-    text-align: center;
+    width: 0px;
+    // text-align: center;
     font-size: 20px;
-    margin-top: 30px;
+    margin-top: 10px;
+    .child-flex {
+      display: flex;
+      flex-wrap: wrap;
+      .child {
+        padding: 2px 10px;
+        cursor: pointer;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 5px;
+          bottom: 20%;
+          width: 3px;
+          height: 55%;
+          background: #555;
+        }
+      }
+      .child-active {
+        font-weight: bold;
+        border: 1px dashed #111;
+      }
+    }
+    .article-content {
+      // padding: 20px;
+      // width: 100%;
+    }
   }
 }
 </style>

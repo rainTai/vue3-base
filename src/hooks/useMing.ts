@@ -130,6 +130,7 @@ const mingShenSha = (currentTime, ming) => [
 
 const isBenMingBad = (currentTime, ming) => {
   const day = currentTime.format('cD')
+  const hour = currentTime.format('cH')
   const array = [
     {
       benMing: '甲子',
@@ -618,21 +619,36 @@ const isBenMingBad = (currentTime, ming) => {
       if (day === x.mingPo) {
         data.push('命破日')
       }
+      if (hour === x.mingPo) {
+        data.push('命破时')
+      }
       if (x.sanSha.includes(day)) {
-        data.push('三煞日')
+        data.push('真三煞日')
+      }
+      if (x.sanSha.includes(hour)) {
+        data.push('真三煞时')
       }
       if (x.xunChong.includes(day)) {
         data.push('旬冲日')
       }
+      if (x.xunChong.includes(hour)) {
+        data.push('旬冲时')
+      }
       if (x.zhengChong.includes(day)) {
         data.push('正冲日')
+      }
+      if (x.zhengChong.includes(hour)) {
+        data.push('正冲时')
       }
       if (x.cunTuWuGuang.includes(day)) {
         data.push('寸土无光日（阴宅）')
       }
+      if (x.cunTuWuGuang.includes(hour)) {
+        data.push('寸土无光时（阴宅）')
+      }
     }
   })
-  return data
+  return data.length > 0 ? data : ''
 }
 
 //计算命三煞

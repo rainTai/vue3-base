@@ -1,5 +1,20 @@
 export const articles = [
   {
+    title: '数九还一',
+    author: '朱润威',
+    content: [
+      {
+        title: '能量体',
+        content: `能量体`,
+      },
+      {
+        title: '先天八卦',
+        content: `  &nbsp;&nbsp;&nbsp;&nbsp;先天八卦展示的是天地人相互作用的循环递归，一卦分三爻。上中下爻分别对应天气人气地气。
+        按照1-8的顺序排列，可以发现，在一个时间循环内天气变八次，人气变四次，而地气变两次。`,
+      },
+    ],
+  },
+  {
     title: '太白阴经',
     author: '李荃',
     content: [
@@ -51,14 +66,11 @@ export const articles = [
   },
   {
     title: '文章名称',
-    content: '我是谁2',
-  },
-  {
-    title: '文章名称',
-    content: '我是谁3',
-  },
-  {
-    title: '文章名称',
-    content: '我是谁4',
+    content: [
+      {
+        title: '全文',
+        content: '',
+      },
+    ],
   },
 ]

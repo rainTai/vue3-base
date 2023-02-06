@@ -137,6 +137,9 @@ const getDayFormat = solar => {
     // solar.longShangBaShaRi = isLongShangBaShaRi()
     // solar.xingYaoShaRi = isXingYaoShaRi()
   }
+  if (baseStore.mingList) {
+    // solar.sanShaShi = isMingSanShaShi(solar, baseStore.zuoshan)
+  }
 
   solar.jieLuKongWang = []
   solar.guiRenDengTianMen = []

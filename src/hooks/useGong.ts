@@ -26,7 +26,7 @@ const initGongListFunc = (currentTime, mingList, zuoshan) => {
         sanYuanYear: getSanYuanYear(currentTime, i),
         sanYuanMonth: getSanYuanMonth(currentTime, i),
         xiaoYueJian: getXiaoYueJian(currentTime, i),
-        wuJiDuTian: getWuJiDuTian(currentTime, i, zuoshan),
+        wuJiDuTian: getWuJiDuTian(currentTime, i),
         zhengYinFu: getZhengYinFu(currentTime, i, zuoshan),
         pangYinFu: getPangYinFu(currentTime, i, zuoshan),
         zuoShanYaoSha: getZuoShanYaoSha(currentTime, i, zuoshan),
@@ -651,9 +651,9 @@ const getSanSha = (currentTime: any, i: number) => {
   }
   if (
     ['亥', '卯', '未'].includes(yearZhi) &&
-    ['辛', '庚', '酉', '辛', '戌'].filter(x => gongChildName[i].includes(x))
+    ['辛', '庚', '酉', '申', '戌'].filter(x => gongChildName[i].includes(x))
   ) {
-    const data = ['辛', '庚', '酉', '辛', '戌'].filter(x => gongChildName[i].includes(x))
+    const data = ['辛', '庚', '酉', '申', '戌'].filter(x => gongChildName[i].includes(x))
     return data.length ? data + '方三煞' : ''
   }
 }
@@ -730,7 +730,7 @@ const getXiaoYueJian = (currentTime: any, i: number) => {
 }
 
 //戊己都天大煞
-const getWuJiDuTian = (currentTime: any, i: number, zuoshan: string) => {
+const getWuJiDuTian = (currentTime: any, i: number) => {
   const year = currentTime.format('cY')
   const yearGan = year[0]
   const wuJiDuTianList: string[] = []
@@ -790,11 +790,13 @@ const getWuJiDuTian = (currentTime: any, i: number, zuoshan: string) => {
   if (struct.length && isTaiSuiDuiHuang) {
     struct += '+太岁堆黄!'
   }
-  if (zuoshan && gongChildName[i].includes(zuoshan)) {
-    return struct
-  } else {
-    return ''
-  }
+  return struct
+  console.log(struct, 'struct')
+  // if (zuoshan && gongChildName[i].includes(zuoshan)) {
+  //   return struct
+  // } else {
+  //   return ''
+  // }
 }
 
 //正阴府 开山忌
